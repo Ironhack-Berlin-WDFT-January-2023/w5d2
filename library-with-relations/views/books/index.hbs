@@ -1,0 +1,9 @@
+<h1>All books</h1>
+
+{{#each books}}
+	<div>
+		<a href="/books/{{_id}}">{{title}}</a>
+	</div>
+{{/each}}
+
+<a href="/books/add">Add a book</a>

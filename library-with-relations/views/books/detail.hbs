@@ -1,0 +1,34 @@
+<h1>All information about {{book.title}} 🦄</h1>
+
+<h3>Written by: {{book.author.name}} {{book.author.lastName}}</h3>
+<img src="{{book.author.pictureUrl}}">
+
+{{!-- You can also set the book as context: --}}
+{{#with book}}
+	<h3>Content: {{description}}</h3>
+	<h3>Rating: {{rating}}</h3>
+	<a href="/books/edit/{{_id}}">Edit this book 📝</a>
+	<a href="/books/delete/{{_id}}">Delete this book ❌</a>
+{{/with}}
+
+{{!-- List the reviews --}}
+{{#if book.reviews}}
+	{{#each book.reviews}}
+		<div>
+			<p>{{text}}</p>
+			<p>Added by: {{user}}</p>
+		</div>
+	{{/each}}
+{{/if}}
+
+{{!-- Add a review --}}
+<h2>Add review</h2>
+<form action="/books/{{book._id}}/reviews" method="POST">
+	<label for="user">Username: </label>
+	<input type="text" name="user">	
+
+	<label for="text">Text: </label>
+	<input type="text" name="text">
+
+	<button type="submit">Add review</button>
+</form>
